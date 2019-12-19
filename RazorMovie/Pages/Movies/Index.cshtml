@@ -1,5 +1,6 @@
 ﻿@page
 @model RazorMovie.IndexModel
+@using RazorMovie.Models
 
 @{
     ViewData["Title"] = "Index";
@@ -10,53 +11,86 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movie[0].ReleaseDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Genre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Rating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Price)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Movie) 
-{
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-           <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-            <td></td>
-        </tr>
-}
-    </tbody>
+
+    @using (Html.BeginForm(FormMethod.Get))
+    {
+   <p>
+        Genre:
+    <select asp-for="MovieGenre" asp-items="Html.GetEnumSelectList<Movie.MovieGenre>().Distinct()">  
+    </select>
+    Rating:
+    <select asp-for="MovieRating" asp-items="@Html.GetEnumSelectList<Movie.MovieRating>().Distinct()">
+    </select>
+    Title: <input type="text" asp-for="SearchString" placeholder="Enter search text" name="SearchString" />
+    <input type="submit" value="Filter" title="execute search" />
+   </p>
+    }
+
+<table class="table table-striped">
+    @using (Html.BeginForm(FormMethod.Get, true))
+    {
+        <thead>
+            <tr>
+                <th id="Title">
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                        @Html.DisplayNameFor(model => model.Movie[0].Title)
+                    </a>
+                </th>
+                <th id="ReleaseDate">
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
+                        @Html.DisplayNameFor(model => model.Movie[0].ReleaseDate)
+                    </a>
+                </th>
+                <th id="Genre">
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.GenreSort">
+                        @Html.DisplayNameFor(model => model.Movie[0].Genre)
+                    </a>
+                </th>
+                <th id="Rating">
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.RatingSort">
+                        @Html.DisplayNameFor(model => model.Movie[0].Rating)
+                    </a>
+                </th>
+                <th id="Price">
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.PriceSort">
+                        @Html.DisplayNameFor(model => model.Movie[0].Price)
+                    </a>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+    }
+
+<tbody>
+    @if (Model.Movie != null)
+    {
+        @foreach (var item in Model.Movie)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+                <td></td>
+            </tr>
+        }
+    }
+
+</tbody>
 </table>

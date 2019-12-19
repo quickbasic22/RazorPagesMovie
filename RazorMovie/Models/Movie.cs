@@ -25,6 +25,7 @@ namespace RazorMovie.Models
         
         public enum MovieGenre
         {
+            All,
             Action,
             Fantasy,
             [Display(Name = "Sci-Fi/Adventure")]
@@ -41,6 +42,7 @@ namespace RazorMovie.Models
 
         public enum MovieRating
         {
+            All,
             R,
             PG,
             [Display(Name = "PG-13")]
