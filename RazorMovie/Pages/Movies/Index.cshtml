@@ -6,25 +6,28 @@
     ViewData["Title"] = "Index";
 }
 
+@{ int addOne = 0;
+    string Genre = "Genre"; }
+
 <h1>Index</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
 
-    @using (Html.BeginForm(FormMethod.Get))
-    {
-   <p>
+@using (Html.BeginForm(FormMethod.Get))
+{
+    <p>
         Genre:
-    <select asp-for="MovieGenre" asp-items="Html.GetEnumSelectList<Movie.MovieGenre>().Distinct()">  
-    </select>
-    Rating:
-    <select asp-for="MovieRating" asp-items="@Html.GetEnumSelectList<Movie.MovieRating>().Distinct()">
-    </select>
-    Title: <input type="text" asp-for="SearchString" placeholder="Enter search text" name="SearchString" />
-    <input type="submit" value="Filter" title="execute search" />
-   </p>
-    }
+        <select asp-for="MovieGenre" asp-items="Html.GetEnumSelectList<Movie.MovieGenre>().Distinct()">
+        </select>
+        Rating:
+        <select asp-for="MovieRating" asp-items="@Html.GetEnumSelectList<Movie.MovieRating>().Distinct()">
+        </select>
+        Title: <input type="text" asp-for="SearchString" placeholder="Enter search text" name="SearchString" />
+        <input type="submit" value="Filter" title="execute search" />
+    </p>
+}
 
 <table class="table table-striped">
     @using (Html.BeginForm(FormMethod.Get, true))
@@ -61,36 +64,109 @@
         </thead>
     }
 
-<tbody>
-    @if (Model.Movie != null)
-    {
-        @foreach (var item in Model.Movie)
+    <tbody>
+        @if (Model.Movie != null)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReleaseDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Genre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rating)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                </td>
-                <td></td>
-            </tr>
-        }
-    }
+            @foreach (var item in Model.Movie)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReleaseDate)
+                    </td>
+                    <td>
 
-</tbody>
+                        @{ addOne++;
+                            Genre = Genre + addOne;
+                        }
+
+
+                        @if (item.Genre == Movie.MovieGenre.Action)
+                            @Html.RadioButton(Genre, item.Genre, true)
+                            else
+                                @Html.RadioButton(Genre, item.Genre, false)
+                        <text>Action</text>
+
+                        @if (item.Genre == Movie.MovieGenre.Comedy)
+                            @Html.RadioButton(Genre, item.Genre, true)
+                            else
+                                @Html.RadioButton(Genre, item.Genre, false)
+                        <text>Comedy</text>
+
+                        @if (item.Genre == Movie.MovieGenre.Fantasy)
+                            @Html.RadioButton(Genre, item.Genre, true)
+                            else
+                                @Html.RadioButton(Genre, item.Genre, false)
+                        <text>Fantasy</text>
+                        <br />
+
+                        @if (item.Genre == Movie.MovieGenre.FantasySciFi)
+                            @Html.RadioButton(Genre, item.Genre, true)
+                            else
+                                @Html.RadioButton(Genre, item.Genre, false)
+                        <text>FantasySciFi</text>
+
+                        @if (item.Genre == Movie.MovieGenre.Horror)
+                            @Html.RadioButton(Genre, item.Genre, true)
+                            else
+                                @Html.RadioButton(Genre, item.Genre, false)
+                        <text>Horror</text>
+
+                        @if (item.Genre == Movie.MovieGenre.RomanticComedy)
+                            @Html.RadioButton(Genre, item.Genre, true)
+                            else
+                                @Html.RadioButton(Genre, item.Genre, false)
+                        <text>RomanticComedy</text>
+                        <br />
+
+                        @if (item.Genre == Movie.MovieGenre.SciFiAdventure)
+                            @Html.RadioButton(Genre, item.Genre, true)
+                            else
+                                @Html.RadioButton(Genre, item.Genre, false)
+                        <text>SciFiAdventure</text>
+
+                        @if (item.Genre == Movie.MovieGenre.Thriller)
+                            @Html.RadioButton(Genre, item.Genre, true)
+                            else
+                                @Html.RadioButton(Genre, item.Genre, false)
+                        <text>Thriller</text>
+
+                        @if (item.Genre == Movie.MovieGenre.Western)
+                            @Html.RadioButton(Genre, item.Genre, true)
+                            else
+                                @Html.RadioButton(Genre, item.Genre, false)
+                        <text>Western</text>
+                        <br />
+
+                        @*
+                            @if (item.Genre == Movie.MovieGenre.All)
+                            @Html.RadioButton(Genre, item.Genre, true)
+                            else
+                                @Html.RadioButton(Genre, item.Genre, false)
+                        <text>All</text>
+                        *@
+                        
+
+
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rating)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                    <td></td>
+                </tr>
+            }
+        }
+
+    </tbody>
 </table>

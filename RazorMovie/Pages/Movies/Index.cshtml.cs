@@ -42,8 +42,7 @@ namespace RazorMovie
         
         public async Task OnGetAsync(string sortOrder)
         {
-            
-            
+           
             var genreQuery = from m in _context.Movies
                                             orderby m.Genre
                                             select m.Genre;

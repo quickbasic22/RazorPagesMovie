@@ -1,0 +1,40 @@
+﻿ @if (item.Genre == Movie.MovieGenre.Action)
+                        @Html.RadioButtonFor(a => item.Genre, "Action", new { @checked = true, @title = "Action" })
+                        else
+                            @Html.RadioButtonFor(a => item.Genre, "Action", new { @checked = false, @title = "Action" })
+                    @if (item.Genre == Movie.MovieGenre.Comedy)
+                        @Html.RadioButtonFor(a => item.Genre, "Comedy", new { @checked = true, @title = "Comedy" })
+                        else
+                            @Html.RadioButtonFor(a => item.Genre, "Comedy", new { @checked = false, @title = "Comedy" })
+                    @if (item.Genre == Movie.MovieGenre.Fantasy)
+                        @Html.RadioButtonFor(a => item.Genre, "Fantasy", new { @checked = true, @title = "Fantasy" })
+                        else
+                            @Html.RadioButtonFor(a => item.Genre, "Fantasy", new { @checked = false, @title = "Fantasy" })
+                    @if (item.Genre == Movie.MovieGenre.FantasySciFi)
+                        @Html.RadioButtonFor(a => item.Genre, "FantasySciFi", new { @checked = true, @title = "FantasySciFi" })
+                        else
+                            @Html.RadioButtonFor(a => item.Genre, "FantasySciFi", new { @checked = false, @title = "FantasySciFi" })
+                    @if (item.Genre == Movie.MovieGenre.Horror)
+                        @Html.RadioButtonFor(a => item.Genre, "Horror", new { @checked = true, @title = "Horror" })
+                        else
+                            @Html.RadioButtonFor(a => item.Genre, "Horror", new { @checked = false, @title = "Horror" })
+                    @if (item.Genre == Movie.MovieGenre.RomanticComedy)
+                        @Html.RadioButtonFor(a => item.Genre, "RomanticComedy", new { @checked = true, @title = "RomanticComedy" })
+                        else
+                            @Html.RadioButtonFor(a => item.Genre, "RomanticComedy", new { @checked = false, @title = "RomanticComedy" })
+                    @if (item.Genre == Movie.MovieGenre.SciFiAdventure)
+                        @Html.RadioButtonFor(a => item.Genre, "SciFiAdventure", new { @checked = true, @title = "SciFiAdventure" })
+                        else
+                            @Html.RadioButtonFor(a => item.Genre, "SciFiAdventure", new { @checked = false, @title = "SciFiAdventure" })
+                    @if (item.Genre == Movie.MovieGenre.Thriller)
+                        @Html.RadioButtonFor(a => item.Genre, "Thriller", new { @checked = true, @title = "Thriller" })
+                        else
+                            @Html.RadioButtonFor(a => item.Genre, "Thriller", new { @checked = false, @title = "Thriller" })
+                    @if (item.Genre == Movie.MovieGenre.Western)
+                        @Html.RadioButtonFor(a => item.Genre, "Western", new { @checked = true, @title = "Western" })
+                        else
+                            @Html.RadioButtonFor(a => item.Genre, "Western", new { @checked = false, @title = "Western" })
+                    @if (item.Genre == Movie.MovieGenre.All)
+                        @Html.RadioButtonFor(a => item.Genre, "All", new { @checked = true, @title = "All" })
+                        else
+                            @Html.RadioButtonFor(a => item.Genre, "All", new { @checked = false, @title = "All" })
